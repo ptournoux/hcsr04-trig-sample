@@ -6,11 +6,16 @@ More information are provided in the driver module repository : https://github.c
 
 
 
-## How to use this code
+## Dependancy
 
-Clone this repository to your zephyr workspace.
+This sample app obviously requires the hcsr04-trig driver module.
 
-Add the module hcsr04-trig to your project's west.yml file:
+This can be added to your workspace through west.
+
+
+Add the module hcsr04-trig to your project's west.yml file e.g. through
+`vi ~/zephyrproject/zephyr/west.yml`
+
 
 ```yml
 
@@ -28,13 +33,27 @@ cd ~/zephyrproject/zephyr
 west update
 ```
 
+## Clone this repository
+
+Clone this repository to your zephyr workspace.
+
+```bash
+cd ~/zephyrproject/zephyr
+git clone https://github.com/ptournoux/hcsr04-trig-sample.git
+```
+
+
 ## Build the app
 
+```bash
 west build --board=nucleo_l073rz -p always hcsr04-trig-sample
+```
 
 ## Flash the app
 
+```bash
 west flash
+```
 
 May require the stlink tools to be installed.
 

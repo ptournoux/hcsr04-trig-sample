@@ -1,6 +1,10 @@
 # Sample app for HC_SRO4 single pin ultrasonic sensor
 
-This is a sample app for the HC-SR04 ultrasonic sensor. It uses a single pin to trigger the sensor and read the echo. The sensor is connected to the Raspberry Pi as follows:
+This is a sample app for the HC-SR04 ultrasonic sensor. It uses a single pin to trigger the sensor and read the echo.
+
+More information are provided in the driver module repository : https://github.com/ptournoux/hcsr04-trig.git
+
+
 
 ## How to use this code
 

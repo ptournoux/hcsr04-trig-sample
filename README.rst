@@ -1,27 +1,67 @@
-.. zephyr:code-sample:: lorawan-class-a
-   :name: LoRaWAN class A device
-   :relevant-api: lorawan_api
+# Sample app for HC_SRO4 single pin ultrasonic sensor
 
-   Join a LoRaWAN network and send a message periodically.
+This is a sample app for the HC-SR04 ultrasonic sensor. It uses a single pin to trigger the sensor and read the echo. The sensor is connected to the Raspberry Pi as follows:
 
-Overview
-********
+## How to use this code
 
-A simple application to demonstrate the :ref:`LoRaWAN subsystem <lorawan_api>` of Zephyr.
+Clone this repository to your zephyr workspace.
 
-Building and Running
-********************
+Add the module hcsr04-trig to your project's west.yml file:
 
-This sample can be found under
-:zephyr_file:`samples/subsys/lorawan/class_a` in the Zephyr tree.
+```yml
 
-Before building the sample, make sure to select the correct region in the
-``prj.conf`` file.
+- name: hcsr04-trig 
+      url: https://github.com/ptournoux/hcsr04-trig.git
+      revision: main
+      path: modules/lib/hcsr04-trig
 
-The following commands build and flash the sample.
+```
 
-.. zephyr-app-commands::
-   :zephyr-app: samples/subsys/lorawan/class_a
-   :board: nucleo_wl55jc
-   :goals: build flash
-   :compact:
+Run west update :
+
+```bash
+cd ~/zephyrproject/zephyr
+west update
+```
+
+## Build the app
+
+west build --board=nucleo_l073rz -p always hcsr04-trig-sample
+
+## Flash the app
+
+west flash
+
+May require the stlink tools to be installed.
+
+## What is the expected output?
+
+Open the serial terminal :
+
+```bash
+picocom -b 115200 /dev/ttyACM0
+```
+
+You should see the distance measured by the sensor in m.
+
+```
+stance: 0.911000 m
+Distance: 0.912000 m
+Distance: 5.313000 m
+*** Booting Zephyr OS build v4.0.0-3689-g2615ec879e04 ***
+HCSR04TRIG device found and ready
+Distance: 0.916000 m
+Distance: 0.916000 m
+Distance: 0.912000 m
+Error: sensor_sample_fetch failed: -5
+Distance: 1.913000 m
+Distance: 5.314000 m
+Distance: 1.913000 m
+Distance: 0.911000 m
+```
+
+Note that the sensor is not very accurate and may return some errors if the echo delay exceeds 10ms.
+
+## What is my next step?
+
+If you don't have a nucleo_l073rz board, you should add an overlay file in the board directory. Contributions are welcome.

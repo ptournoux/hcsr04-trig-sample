@@ -1,0 +1,11 @@
+common:
+  tags: sensor
+  depends_on: sensor
+  harness: console
+  harness_config:
+    type: one_line
+    regex:
+      - "<inf> Distance: ([0-9].[0-9]+) m"
+sample:
+  description: Demonstration of single pin HC_SR04 ultrasonic sensor driver module
+  name: HCSR04TRIG sample

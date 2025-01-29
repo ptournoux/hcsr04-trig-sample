@@ -1,0 +1,9 @@
+&gpioa {
+    hcsr04trig {
+        compatible = "hcsr04trig";
+        label = "HCSR04TRIG_0";
+        trigger-gpios = <&gpioa 5 GPIO_ACTIVE_HIGH>;  // TRIG: PA5 (D13)
+        status = "okay";
+    };
+};
+
